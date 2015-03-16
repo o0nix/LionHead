@@ -20,16 +20,23 @@ namespace LionHead.WebAPI.Controllers
         }
 
         [HttpGet]
-        public string Loot(int playerId, string chestKey)
+        public string Get(int playerId, string chestKey)
         {
-            var chest = _gameAPI.GetChest(chestKey);
+            try
+            {
+                var chest = _gameAPI.GetChest(chestKey);
 
-            var item = chest.Open(playerId);
+                var item = chest.Open(playerId);
 
-            if (!string.IsNullOrWhiteSpace(item)) _gameAPI.LogMessage(string.Format("{0} found a {1}", playerId, item));
-            else _gameAPI.LogMessage(string.Format("{0} found an empty chest", playerId));
+                if (!string.IsNullOrWhiteSpace(item)) _gameAPI.LogMessage(string.Format("{0} found a {1}", playerId, item));
+                else _gameAPI.LogMessage(string.Format("{0} found an empty chest", playerId));
 
-            return item;
+                return item;
+            }
+            catch
+            {
+                return "Error: Invalid chest key";
+            }
         }
     }
 }
