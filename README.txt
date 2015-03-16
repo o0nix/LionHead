@@ -15,7 +15,7 @@ Scroll of wisdom    20
 *PlayerId is just a number. By changing the player id the chest generates random items          
 		
 		
-To generate get the encrypted chest key use:
+To generate the encrypted chest key use:
 ---------------------------------------------- 
 
 http://[BASEURL]/Api/EncryptChest?lootTable=[LootTable]
